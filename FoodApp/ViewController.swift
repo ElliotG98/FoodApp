@@ -8,11 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FoodAppController: UICollectionViewController {
+    
+    let cellId = "cellId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
+        collectionView.backgroundColor = .white
+        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
+        
+    
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
     }
 
 
