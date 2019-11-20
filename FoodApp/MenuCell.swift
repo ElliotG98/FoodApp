@@ -24,9 +24,9 @@ class MenuCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionView
     
     let appsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
+        layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero,collectionViewLayout: layout)
-        cv.backgroundColor = .blue
+        cv.backgroundColor = .clear
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -35,12 +35,22 @@ class MenuCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionView
         backgroundColor = .black
         addSubview(appsCollectionView)
         
+        appsCollectionView.dataSource = self
+        appsCollectionView.delegate = self
+        
+        appsCollectionView.register(FoodCell.self, forCellWithReuseIdentifier: cellId)
+        
+        
         trailingAnchor.constraint(equalTo: super.trailingAnchor).isActive = true
         leadingAnchor.constraint(equalTo: super.leadingAnchor).isActive = true
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

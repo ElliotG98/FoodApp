@@ -14,8 +14,14 @@ class FoodCell: UICollectionViewCell {
         setupViews()
     }
     
+    let imageView: UIImageView = {
+       let iv = UIImageView()
+        iv.image = UIImage(named: <#T##String#>)
+        return iv
+    }()
+    
     func setupViews() {
-        
+        backgroundColor = .black
     }
     
     required init?(coder aDecoder: NSCoder) {
